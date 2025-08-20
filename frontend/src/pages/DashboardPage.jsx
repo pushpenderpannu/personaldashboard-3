@@ -72,6 +72,9 @@ const DashboardPage = () => {
 
   const handleAddWidget = async (widgetData) => {
     const instanceId = `${widgetData.widgetType}-${Date.now()}`;
+    // Calculate new widget position
+    const y = layouts.lg ? layouts.lg.reduce((max, item) => Math.max(max, item.y + item.h), 0) : 0;
+
     const newWidget = {
       instanceId: instanceId,
       widgetType: widgetData.widgetType,
@@ -79,7 +82,10 @@ const DashboardPage = () => {
       aiPrompt: widgetData.aiPrompt,
       layout: {
         i: instanceId,
-        x: (widgets.length * 28) % 84, y: Infinity, w: 28, h: 2,
+        x: (widgets.length * 28) % 84,
+        y: y,
+        w: 28,
+        h: 2,
       },
     };
 
