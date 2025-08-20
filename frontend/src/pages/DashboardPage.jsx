@@ -71,13 +71,14 @@ const DashboardPage = () => {
   };
 
   const handleAddWidget = async (widgetData) => {
+    const instanceId = `${widgetData.widgetType}-${Date.now()}`;
     const newWidget = {
-      instanceId: `${widgetData.widgetType}-${Date.now()}`,
+      instanceId: instanceId,
       widgetType: widgetData.widgetType,
       config: widgetData.config,
       aiPrompt: widgetData.aiPrompt,
       layout: {
-        i: `${widgetData.widgetType}-${Date.now()}`,
+        i: instanceId,
         x: (widgets.length * 28) % 84, y: Infinity, w: 28, h: 2,
       },
     };
